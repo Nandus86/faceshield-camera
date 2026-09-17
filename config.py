@@ -25,10 +25,10 @@ REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT", "6.0"))
 # Tipo: "usb" (Webcam padrão V4L2) ou "picamera2" (Módulo oficial Raspberry Pi)
 CAMERA_TYPE = os.getenv("CAMERA_TYPE", "usb").lower()
 CAMERA_INDEX = int(os.getenv("CAMERA_INDEX", "0"))
-FRAME_WIDTH = int(os.getenv("FRAME_WIDTH", "640"))
-FRAME_HEIGHT = int(os.getenv("FRAME_HEIGHT", "480"))
+FRAME_WIDTH = int(os.getenv("FRAME_WIDTH", "1280"))
+FRAME_HEIGHT = int(os.getenv("FRAME_HEIGHT", "720"))
 FPS_TARGET = int(os.getenv("FPS_TARGET", "10"))
-JPEG_QUALITY = int(os.getenv("JPEG_QUALITY", "80"))
+JPEG_QUALITY = int(os.getenv("JPEG_QUALITY", "95"))
 
 # ── Detecção de Movimento & Disparo Inteligente ────────────────────────────────
 # Se ativado, analisa movimento e só despacha foto se houver alguém na frente.

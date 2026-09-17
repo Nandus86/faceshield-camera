@@ -91,6 +91,8 @@ class CameraCapture:
         # Fallback ou padrão USB
         logger.info(f"Abrindo câmera USB (índice {config.CAMERA_INDEX})...")
         self.cap = cv2.VideoCapture(config.CAMERA_INDEX)
+        # Ativa codec MJPG de hardware para permitir 720p/1080p sem gargalo de barramento
+        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, config.FRAME_WIDTH)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, config.FRAME_HEIGHT)
         self.cap.set(cv2.CAP_PROP_FPS, config.FPS_TARGET)
@@ -98,7 +100,9 @@ class CameraCapture:
         if not self.cap.isOpened():
             logger.error(f"Não foi possível abrir a câmera USB no índice {config.CAMERA_INDEX}.")
         else:
-            logger.info("Câmera USB aberta com sucesso.")
+            w = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            h = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            logger.info(f"Câmera USB aberta com sucesso ({w}x{h}, qualidade JPEG={config.JPEG_QUALITY}%).")
 
     def read_frame(self) -> Optional[np.ndarray]:
         if self.picam2 is not None:
