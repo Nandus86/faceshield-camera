@@ -1,0 +1,20 @@
+[Unit]
+Description=FaceShield Edge Client - Camera & Frame Dispatcher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/pi_client
+ExecStart=/home/pi/pi_client/venv/bin/python main.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Otimização de I/O e prioridade
+Nice=5
+
+[Install]
+WantedBy=multi-user.target
