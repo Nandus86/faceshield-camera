@@ -5,9 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
-WorkingDirectory=/home/pi/pi_client
-ExecStart=/home/pi/pi_client/venv/bin/python main.py
+# Ajuste o usuário e diretório para o usuário do seu Raspberry Pi
+User=basileia
+WorkingDirectory=/home/basileia/pi_client
+ExecStart=/home/basileia/pi_client/venv/bin/python main.py
 Restart=always
 RestartSec=5
 StandardOutput=journal
